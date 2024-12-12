@@ -1,21 +1,36 @@
 package main;
 
 import javax.swing.border.LineBorder;
+
+import models.Users;
+
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 public class Login extends JFrame {
 
     private CardLayout cardLayout;
     private JPanel mainPanel;
     private JPanel signUpPage;
+    private JLabel Error;
+
+    private JTextField userNameField;
+    private JTextField passwordField;
 
     private Font plainFont = new Font("Arial", Font.PLAIN, 30);
     private Font boldFont = new Font("Arial", Font.BOLD, 32);
     private Color Purple = new Color(111, 55, 255);
     private Color Background = new Color(224, 224, 255);
+    private ArrayList<Users> userList;
 
-    public Login() {
+
+    public Login(ArrayList<Users> User) {
+
+        this.userList = User; 
+
         setTitle("Restaurant Management System");
         setSize(800, 600);
 
@@ -68,7 +83,7 @@ public class Login extends JFrame {
         userName.setBounds(55, 252, 179, 41);
         loginPage.add(userName);
 
-        JTextField userNameField = new JTextField();
+        userNameField = new JTextField();
         userNameField.setBounds(249, 253, 389, 46);
         userNameField.setFont(new Font("Arial", Font.PLAIN, 20)); // Set font to Arial and size 20
         loginPage.add(userNameField);
@@ -79,7 +94,7 @@ public class Login extends JFrame {
         password.setBounds(55, 354, 200, 40);
         loginPage.add(password);
 
-        JTextField passwordField = new JPasswordField(20);
+        passwordField = new JPasswordField(20);
         ((JPasswordField) passwordField).setEchoChar('*');
         passwordField.setBounds(249, 348, 389, 46);
         passwordField.setFont(new Font("Arial", Font.PLAIN, 20)); // Set font to Arial and size 20
@@ -93,6 +108,7 @@ public class Login extends JFrame {
         loginButton.setBounds(55, 431, 232, 63);
         loginButton.setBackground(Purple);
         loginPage.add(loginButton);
+        loginButton.addActionListener(new LoginListener());
         
         JButton signupButton = new JButton("Sign Up");
         signupButton.setForeground(Color.BLACK);
@@ -100,9 +116,13 @@ public class Login extends JFrame {
         signupButton.setBounds(305, 431, 232, 63);
         signupButton.setBackground(Background);
         signupButton.setBorder(new LineBorder(Purple, 5));
-
-        signupButton.addActionListener(e -> cardLayout.show(signUpPage, "SignUpPage")); // Switch to Sign Up Page
-
+        signupButton.add(loginButton);
+        signupButton.addActionListener(new SignUpListener());
+        
+        Error = new JLabel("");
+        Error.setBounds(57, 399, 200, 22);
+        Error.setForeground(Color.RED);
+        loginPage.add(Error);
         
 
         loginPage.add(signupButton);
@@ -110,39 +130,49 @@ public class Login extends JFrame {
         return loginPage;
     }
 
-    public JPanel signUpPage() {
-        signUpPage = new JPanel();
-        signUpPage.setLayout(null);
-        signUpPage.setBackground(Background);
+    public class LoginListener implements ActionListener {
 
-        JLabel signUpTitle = new JLabel("Sign Up");
-        signUpTitle.setFont(boldFont);
-        signUpTitle.setBounds(55, 50, 691, 51);
-        signUpPage.add(signUpTitle);
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            String userName = userNameField.getText();
+            String password = passwordField.getText();
 
-        // Add additional Sign Up fields here (e.g., username, password, confirm password)
-        // Example:
-        JLabel signUpUserName = new JLabel("Username:");
-        signUpUserName.setFont(plainFont);
-        signUpUserName.setBounds(55, 150, 179, 41);
-        signUpPage.add(signUpUserName);
+            if (userList.size() == 0) {
+                Error.setText("No users in the database, please sign up");
+                return;
+            }
 
-        JTextField signUpUserNameField = new JTextField();
-        signUpUserNameField.setBounds(249, 150, 389, 46);
-        signUpUserNameField.setFont(new Font("Arial", Font.PLAIN, 20));
-        signUpPage.add(signUpUserNameField);
+            for (Users user : userList) {
 
-        // Add a button to go back to the login page
-        JButton backButton = new JButton("Back to Login");
-        backButton.setBounds(55, 350, 232, 63);
-        backButton.setBackground(Purple);
-        backButton.setForeground(Color.WHITE);
-        backButton.setFont(plainFont);
+                String dbUser = user.getUserName();
+                String dbPass = user.getPassword();
+
+                if (dbUser.equals(userName) && dbPass.equals(password)) {
+                    System.out.println("Login Successful");
+                    TableSetUp tableSetUp = new TableSetUp();
+                    tableSetUp.setVisible(true);
+                    dispose();
+                    return;
+                } else {
+                    System.out.println("Login Failed");
+                }
+
+            }
+            System.out.println("User not found");
+
+        }
         
-        backButton.addActionListener(e -> cardLayout.show(mainPanel, "LoginPage")); // Switch back to Login Page
-
-        signUpPage.add(backButton);
-
-        return signUpPage;
     }
+
+    public class SignUpListener implements ActionListener {
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            SignUp signUp = new SignUp(userList);
+            signUp.setVisible(true);
+            dispose();
+        }
+    }
+
+
 }

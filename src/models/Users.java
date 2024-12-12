@@ -6,17 +6,28 @@ public class Users {
     private String UserName;
     private String Password;
     private int EmployeeID;
-    private String Role;
 
-
-    Users(String FullName, String UserName, String Password, int EmployeeID, String Role) {
+    Users(String FullName, String UserName, String Password, int EmployeeID) {
         this.FullName = FullName;
         this.UserName = UserName;
         this.Password = Password;
         this.EmployeeID = EmployeeID;
-        this.Role = Role;
     }
 
+    public int getEmployeeID() {
+        return this.EmployeeID;
+    }
 
+    public String getFullName() {
+        return this.FullName;
+    }
+
+    public String getUserName() {
+        return this.UserName;
+    }
+
+    public String getPassword() {
+        return this.Password;
+    }
     
 }
