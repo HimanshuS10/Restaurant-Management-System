@@ -169,7 +169,6 @@ public class Login extends JFrame {
         @Override
         public void actionPerformed(ActionEvent e) {
             SignUp signUp = new SignUp(userList);
-            signUp.setVisible(true);
             dispose();
         }
     }
