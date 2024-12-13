@@ -2,14 +2,25 @@ package main;
 
 import java.util.ArrayList;
 
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JPasswordField;
+import javax.swing.JTextField;
+import javax.swing.border.LineBorder;
 
+import main.Login.LoginListener;
+import main.Login.SignUpListener;
 import models.Users;
 import java.awt.*;
 
-public class SignUp {
+public class SignUp extends JFrame {
+
+    private CardLayout cardLayout;
+    private JPanel signupPanel;
+    private JFrame signUpPage;
 
     private JFrame SignUpFrame;
     private Font plainFont = new Font("Arial", Font.PLAIN, 30);
@@ -20,6 +31,7 @@ public class SignUp {
 
     public SignUp(ArrayList<Users> User) {
 
+        signUpPage = new JFrame();
         this.userList = User;
 
         SignUpFrame.setTitle("Restaurant Management System");
@@ -27,25 +39,26 @@ public class SignUp {
 
         // Initialize class-level variables
         cardLayout = new CardLayout();
-        mainPanel = new JPanel(cardLayout);
+        signupPanel = new JPanel(cardLayout);
 
         // Add the login page to the main panel
         SignUpFrame.add(signUpPage(), "LoginPage");
 
         // Add mainPanel to the frame
-        add(SignUpFrame);
+        SignUpFrame.add(signupPanel);
 
-        setResizable(false);
-        setLocationRelativeTo(null);
-        setDefaultCloseOperation(EXIT_ON_CLOSE);
+        SignUpFrame.setResizable(false);
+        SignUpFrame.setLocationRelativeTo(null);
+        SignUpFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
 
     public JPanel signUpPage() {
-        JPanel loginPage = new JPanel();
-        loginPage.setLayout(null); // Use null layout for custom positioning
-        loginPage.setBackground(Background);
 
-        return loginPage;
+        JPanel signUpPage = new JPanel();
+        signUpPage.setLayout(null);
+        signUpPage.setBackground(Background);
+
+        return signUpPage;
     }
 
 }

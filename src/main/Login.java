@@ -21,8 +21,8 @@ public class Login extends JFrame {
 
     private Font plainFont = new Font("Arial", Font.PLAIN, 30);
     private Font boldFont = new Font("Arial", Font.BOLD, 32);
-    private Color Purple = new Color(111, 55, 255);
-    private Color Background = new Color(224, 224, 255);
+    private Color Pink = new Color(234, 105, 105);
+    private Color Background = new Color(37, 40, 54);
     private ArrayList<Users> userList;
 
 
@@ -72,12 +72,14 @@ public class Login extends JFrame {
         
         // Add Title
         JLabel title = new JLabel("Restaurant Management System");
+        title.setForeground(Color.WHITE);
         title.setFont(boldFont);
         title.setBounds(55, 161, 691, 51); // Position title
         loginPage.add(title);
-
+        
         // Add Username Label and Field
         JLabel userName = new JLabel("Username:");
+        userName.setForeground(Color.WHITE);
         userName.setFont(plainFont);
         userName.setBounds(55, 252, 179, 41);
         loginPage.add(userName);
@@ -89,6 +91,7 @@ public class Login extends JFrame {
 
         // Add Password Label and Field
         JLabel password = new JLabel("Password:");
+        password.setForeground(Color.WHITE);
         password.setFont(plainFont);
         password.setBounds(55, 354, 200, 40);
         loginPage.add(password);
@@ -105,21 +108,21 @@ public class Login extends JFrame {
         loginButton.setForeground(Color.WHITE);
         loginButton.setFont(plainFont);
         loginButton.setBounds(55, 431, 232, 63);
-        loginButton.setBackground(Purple);
+        loginButton.setBackground(Pink);
         loginPage.add(loginButton);
         loginButton.addActionListener(new LoginListener());
         
         JButton signupButton = new JButton("Sign Up");
-        signupButton.setForeground(Color.BLACK);
+        signupButton.setForeground(Color.WHITE);
         signupButton.setFont(plainFont);
         signupButton.setBounds(305, 431, 232, 63);
         signupButton.setBackground(Background);
-        signupButton.setBorder(new LineBorder(Purple, 5));
+        signupButton.setBorder(new LineBorder(Pink, 5));
         loginPage.add(signupButton);
         signupButton.addActionListener(new SignUpListener());
         
         Error = new JLabel("");
-        Error.setBounds(57, 399, 200, 50);
+        Error.setBounds(57, 385, 250, 50);
         Error.setForeground(Color.RED);
         loginPage.add(Error);
 
@@ -167,6 +170,7 @@ public class Login extends JFrame {
         @Override
         public void actionPerformed(ActionEvent e) {
             SignUp signUp = new SignUp(userList);
+            setVisible(true);
             dispose();
         }
     }
