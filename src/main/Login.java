@@ -3,7 +3,6 @@ package main;
 import javax.swing.border.LineBorder;
 
 import models.Users;
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -116,14 +115,13 @@ public class Login extends JFrame {
         signupButton.setBounds(305, 431, 232, 63);
         signupButton.setBackground(Background);
         signupButton.setBorder(new LineBorder(Purple, 5));
-        signupButton.add(loginButton);
+        loginPage.add(signupButton);
         signupButton.addActionListener(new SignUpListener());
         
         Error = new JLabel("");
-        Error.setBounds(57, 399, 200, 22);
+        Error.setBounds(57, 399, 200, 50);
         Error.setForeground(Color.RED);
         loginPage.add(Error);
-        
 
         loginPage.add(signupButton);
 
