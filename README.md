@@ -8,3 +8,8 @@ Table setup - Green seat open/Read table close
  - Search Table by Name
 Order
 Checkout Bill
+
+# Commands the run the code
+
+javac -d bin -sourcepath src src\main\Main.java
+java -cp bin main.Main

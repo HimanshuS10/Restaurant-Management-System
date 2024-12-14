@@ -7,11 +7,10 @@ public class Users {
     private String Password;
     private int EmployeeID;
 
-    Users(String FullName, String UserName, String Password, int EmployeeID) {
+    public Users(String FullName, String UserName, String Password) {
         this.FullName = FullName;
         this.UserName = UserName;
         this.Password = Password;
-        this.EmployeeID = EmployeeID;
     }
 
     public int getEmployeeID() {

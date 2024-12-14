@@ -25,10 +25,9 @@ public class Login extends JFrame {
     private Color Background = new Color(37, 40, 54);
     private ArrayList<Users> userList;
 
-
     public Login(ArrayList<Users> User) {
 
-        this.userList = User; 
+        this.userList = User;
 
         setTitle("Restaurant Management System");
         setSize(800, 600);
@@ -54,29 +53,29 @@ public class Login extends JFrame {
         loginPage.setLayout(null); // Use null layout for custom positioning
         loginPage.setBackground(Background);
 
-
         ImageIcon imageIcon = new ImageIcon("src/img/System.png");
-        int originalWidth = imageIcon.getIconWidth();  // Original width of the image
+        int originalWidth = imageIcon.getIconWidth(); // Original width of the image
         int originalHeight = imageIcon.getIconHeight(); // Original height of the image
-        
+
         // Set the new height (smaller value)
         int newHeight = 100; // Example: new height is 100 pixels
-        
+
         // Calculate the new width to maintain the aspect ratio
         int newWidth = (int) ((double) newHeight / originalHeight * originalWidth);
-        
+
         JLabel imageLabel = new JLabel(imageIcon);
-        imageLabel.setIcon(new ImageIcon(imageIcon.getImage().getScaledInstance(newWidth, newHeight, Image.SCALE_SMOOTH)));
+        imageLabel.setIcon(
+                new ImageIcon(imageIcon.getImage().getScaledInstance(newWidth, newHeight, Image.SCALE_SMOOTH)));
         imageLabel.setBounds(55, 61, newWidth, newHeight);
         loginPage.add(imageLabel);
-        
+
         // Add Title
         JLabel title = new JLabel("Restaurant Management System");
         title.setForeground(Color.WHITE);
         title.setFont(boldFont);
         title.setBounds(55, 161, 691, 51); // Position title
         loginPage.add(title);
-        
+
         // Add Username Label and Field
         JLabel userName = new JLabel("Username:");
         userName.setForeground(Color.WHITE);
@@ -111,7 +110,7 @@ public class Login extends JFrame {
         loginButton.setBackground(Pink);
         loginPage.add(loginButton);
         loginButton.addActionListener(new LoginListener());
-        
+
         JButton signupButton = new JButton("Sign Up");
         signupButton.setForeground(Color.WHITE);
         signupButton.setFont(plainFont);
@@ -120,7 +119,7 @@ public class Login extends JFrame {
         signupButton.setBorder(new LineBorder(Pink, 5));
         loginPage.add(signupButton);
         signupButton.addActionListener(new SignUpListener());
-        
+
         Error = new JLabel("");
         Error.setBounds(57, 385, 250, 50);
         Error.setForeground(Color.RED);
@@ -162,18 +161,16 @@ public class Login extends JFrame {
             System.out.println("User not found");
 
         }
-        
+
     }
 
     public class SignUpListener implements ActionListener {
 
         @Override
         public void actionPerformed(ActionEvent e) {
-            SignUp signUp = new SignUp(userList);
-            setVisible(true);
-            dispose();
+            new SignUp(userList);
+            dispose(); // Dispose of the current frame only after the new frame is shown
         }
     }
-
 
 }
