@@ -132,7 +132,6 @@ public class SignUp extends JFrame {
                 Login login = new Login(userList);
                 login.setVisible(true);
             }
-
         }
     }
 

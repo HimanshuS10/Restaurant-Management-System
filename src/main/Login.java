@@ -165,7 +165,6 @@ public class Login extends JFrame {
                 }
             }
         }
-
     }
 
     public class SignUpListener implements ActionListener {
