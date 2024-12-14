@@ -137,6 +137,13 @@ public class Login extends JFrame {
             String userName = userNameField.getText();
             String password = passwordField.getText();
 
+            // for (Users user : userList) {
+            // System.out.println(user.getUserName());
+            // System.out.println(user.getPassword());
+            // }
+
+            // System.out.println("Size of the user"+ userList.size());
+
             if (userList.size() == 0) {
                 Error.setText("No users in the database, please sign up");
                 return;
@@ -154,12 +161,9 @@ public class Login extends JFrame {
                     dispose();
                     return;
                 } else {
-                    System.out.println("Login Failed");
+                    Error.setText("Invalid username or password");
                 }
-
             }
-            System.out.println("User not found");
-
         }
 
     }

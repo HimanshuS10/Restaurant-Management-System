@@ -126,11 +126,11 @@ public class SignUp extends JFrame {
                 System.out.println("Full Name: " + FullName);
                 System.out.println("Username: " + UserName);
                 System.out.println("Password: " + Password);
-                // Users newUser = new Users(FullName, UserName, Password);
-                // userList.add(newUser);
-                // dispose();
-                // Login login = new Login(userList);
-                // login.setVisible(true);
+                Users newUser = new Users(FullName, UserName, Password);
+                userList.add(newUser);
+                dispose();
+                Login login = new Login(userList);
+                login.setVisible(true);
             }
 
         }
