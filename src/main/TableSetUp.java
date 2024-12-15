@@ -13,6 +13,24 @@ public class TableSetUp extends JFrame {
         setLocationRelativeTo(null); // Center the window
         setResizable(false);
 
+
+        JMenuBar menuBar = new JMenuBar();  
+        JMenu menu =new JMenu("Menu");  
+
+        JMenuItem i1 = new JMenuItem("Home");
+        JMenuItem i2 = new JMenuItem("Book a Table");
+        JMenuItem i3 = new JMenuItem("Order");
+        JMenuItem i4 = new JMenuItem("Check Out");
+        JMenuItem i5 = new JMenuItem("Log Out");
+    
+        menu.add(i1);
+        menu.add(i2);
+        menu.add(i3);
+        menu.add(i4);
+        menu.add(i5);
+        menuBar.add(menu);
+
+        setJMenuBar(menuBar);
         // Add the setup page to the frame
         getContentPane().add(TableSetUpPage());
 
@@ -21,23 +39,19 @@ public class TableSetUp extends JFrame {
 
     public JPanel TableSetUpPage() {
         JPanel tableSetUpPage = new JPanel();
-        tableSetUpPage.setLayout(null); // Use absolute positioning
+        tableSetUpPage.setLayout(null); 
 
         JLabel title = new JLabel("Table Set Up Page");
-        title.setBounds(10, 10, 200, 30); // Position the label
+        title.setBounds(10, 10, 200, 30); 
         tableSetUpPage.add(title);
 
-        // Add the TablesShapes component
         TablesShapes tablesShapes = new TablesShapes();
-        tablesShapes.setBounds(50, 50, 700, 500); // Set the bounds of the drawing area
+        tablesShapes.setBounds(82, 128, 128, 128);
         tableSetUpPage.add(tablesShapes);
 
         return tableSetUpPage;
     }
 
-    public static void main(String[] args) {
-        new TableSetUp();
-    }
 }
 
 class TablesShapes extends JComponent {
